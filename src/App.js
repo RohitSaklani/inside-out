@@ -18,14 +18,17 @@ export default function App() {
     "🐓": "rooster"
   };
 
-  let emogweknow = Object.keys(emog);
+  let emogKey = Object.keys(emog);
+  let emogValue = Object.values(emog);
 
   function inputchangehandler(event) {
     console.log("inputchange event called");
-    if (emog[event.target.value] === undefined) {
+    if (emogValue.includes(event.target.value) === false) {
       setEmojiName(errmsg);
     } else {
-      setEmojiName(emog[event.target.value]);
+      console.log("emog found");
+      setEmojiName(emogKey.filter((ele) => event.target.value === emog[ele]));
+      //setEmojiName(emog[event.target.value]);
     }
   }
 
@@ -49,7 +52,7 @@ export default function App() {
 
       <div></div>
       <div>
-        {emogweknow.map(function (emoji) {
+        {emogKey.map(function (emoji) {
           return (
             <span
               style={{ padding: "0.5rem", cursor: "pointer" }}
